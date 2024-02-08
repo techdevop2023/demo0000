@@ -1,0 +1,66 @@
+{
+	"name": "jenkinsfile-outline",
+	"displayName": "Jenkinsfile Outline",
+	"description": "Usable outline with Jenkinsfiles for easy navigation",
+	"icon": "images/logo.png",
+	"publisher": "markbromell",
+	"version": "1.0.1",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mark-bromell/vscode-jenkinsfile-outline"
+	},
+	"engines": {
+		"vscode": "^1.78.0"
+	},
+	"categories": [
+		"Programming Languages",
+		"Visualization"
+	],
+	"activationEvents": [
+		"onLanguage:groovy"
+	],
+	"main": "./dist/extension.js",
+	"scripts": {
+		"vscode:prepublish": "npm run package",
+		"deploy": "vsce publish",
+		"compile": "webpack",
+		"watch": "webpack --watch",
+		"package": "webpack --mode production --devtool hidden-source-map",
+		"compile-tests": "tsc -p . --outDir out",
+		"watch-tests": "tsc -p . -w --outDir out",
+		"pretest": "npm run compile-tests && npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js",
+		"coverage": "c8 --check-coverage npm run test"
+	},
+	"devDependencies": {
+		"@types/glob": "^8.1.0",
+		"@types/mocha": "^10.0.1",
+		"@types/node": "16.x",
+		"@types/vscode": "^1.78.0",
+		"@typescript-eslint/eslint-plugin": "^5.59.1",
+		"@typescript-eslint/parser": "^5.59.1",
+		"@vscode/test-electron": "^2.3.0",
+		"@vscode/vsce": "^2.19.0",
+		"c8": "^8.0.0",
+		"eslint": "^8.39.0",
+		"glob": "^8.1.0",
+		"mocha": "^10.2.0",
+		"tokenizr": "^1.6.9",
+		"ts-loader": "^9.4.2",
+		"ts-node": "^10.9.1",
+		"typescript": "^5.0.4",
+		"webpack": "^5.81.0",
+		"webpack-cli": "^5.0.2"
+	},
+	"__metadata": {
+		"publisherDisplayName": "Mark Bromell",
+		"id": "3e90ba0c-8c89-42ad-9331-4c4d04968bf2",
+		"publisherId": "99d089e8-dfc8-4aa8-a312-89ff5b6e6651",
+		"targetPlatform": "undefined",
+		"updated": false,
+		"isPreReleaseVersion": false,
+		"installedTimestamp": 1699323672954,
+		"preRelease": false
+	}
+}

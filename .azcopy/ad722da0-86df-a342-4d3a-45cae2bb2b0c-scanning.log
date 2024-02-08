@@ -1,0 +1,6 @@
+2023/10/28 03:35:19 AzcopyVersion  10.21.1
+2023/10/28 03:35:19 OS-Environment  windows
+2023/10/28 03:35:19 OS-Architecture  amd64
+2023/10/28 03:35:19 Log times are in UTC. Local time is 28 Oct 2023 09:05:19
+2023/10/28 03:35:19 Failed to scan path \\?\C:\Users\viren\AzureLoadBalancer: CreateFile \\?\C:\Users\viren\AzureLoadBalancer: The system cannot find the file specified.
+2023/10/28 03:35:19 Closing Log

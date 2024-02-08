@@ -1,0 +1,268 @@
+{
+	"name": "jenkins-tool",
+	"displayName": "jenkins-tool",
+	"description": "Jenkins 扩展",
+	"version": "0.1.1",
+	"publisher": "cjw",
+	"icon": "images/logo2.jpg",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/a411434233/xs-plugin-vscode.git"
+	},
+	"engines": {
+		"vscode": "^1.61.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onView:nodeDependencies",
+		"onCommand:xs-createApp",
+		"onCommand:showDialog",
+		"onCommand:addFolder",
+		"onCommand:pxToRpx",
+		"onCommand:pxToRpxEvent",
+		"onCommand:rpxToPxEvent",
+		"onCommand:jenkins.jenkinsConstruct",
+		"onCommand:jenkins.jenkinsShowLog",
+		"onCommand:jenkins.getConfig",
+		"onCommand:jenkins.openURL",
+		"onCommand:jenkins.refreshEntry",
+		"onCommand:jenkins.addStore",
+		"onCommand:jenkins.removeAtStore"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "jenkins",
+					"title": "Jenkins",
+					"icon": "media/jenkins.svg"
+				}
+			]
+		},
+		"views": {
+			"jenkins": [
+				{
+					"id": "nodeDependencies",
+					"name": "jenkins 列表"
+				},
+				{
+					"id": "localList",
+					"name": "我的收藏"
+				}
+			]
+		},
+		"configuration": {
+			"type": "object",
+			"title": "xsTemplateConfig",
+			"properties": {
+				"xsTemplateConfig.rpxFactorNum": {
+					"type": "number",
+					"default": 2,
+					"markdownDescription": "转换rpx因数: px * 因数 = rpx"
+				},
+				"xsTemplateConfig.pxFactorNum": {
+					"type": "number",
+					"default": 2,
+					"description": "转换px因数 : rpx / 因数 = px"
+				},
+				"xsTemplateConfig.userName": {
+					"type": "string",
+					"default": "",
+					"description": "jenkins登录账号"
+				},
+				"xsTemplateConfig.loginHost": {
+					"type": "string",
+					"default": "",
+					"description": "jenkins登录地址"
+				},
+				"xsTemplateConfig.password": {
+					"type": "string",
+					"default": "",
+					"description": "jenkins登录密码(token)"
+				}
+			}
+		},
+		"snippets": [
+			{
+				"language": "javascript",
+				"path": "./xs-plugins/javascript.json"
+			},
+			{
+				"language": "html",
+				"path": "./xs-plugins/javascript.json"
+			},
+			{
+				"language": "vue",
+				"path": "./xs-plugins/javascript.json"
+			},
+			{
+				"language": "vue-html",
+				"path": "./xs-plugins/javascript.json"
+			}
+		],
+		"commands": [
+			{
+				"command": "jenkins.jenkinsConstruct",
+				"title": "Build on jenkins"
+			},
+			{
+				"command": "jenkins.jenkinsShowLog",
+				"title": "Show last log"
+			},
+			{
+				"command": "jenkins.getConfig",
+				"title": "Edit jenkins config"
+			},
+			{
+				"command": "jenkins.openURL",
+				"title": "Open jenkins URL"
+			},
+			{
+				"command": "jenkins.removeAtStore",
+				"title": "从收藏中移除"
+			},
+			{
+				"command": "jenkins.addStore",
+				"title": "添加到”我的收藏“"
+			},
+			{
+				"command": "jenkins.refreshEntry",
+				"title": "Refresh",
+				"icon": {
+					"light": "media/refresh2.svg",
+					"dark": "media/refresh1.svg"
+				}
+			},
+			{
+				"command": "pxToRpxEvent",
+				"title": "px转rpx",
+				"category": "xs-"
+			},
+			{
+				"command": "rpxToPxEvent",
+				"title": "rpx转px",
+				"category": "xs-"
+			},
+			{
+				"command": "pxToRpx",
+				"title": "css转换",
+				"category": "xs-"
+			},
+			{
+				"command": "xs-createApp",
+				"title": "创建向上前端项目",
+				"category": "xs-"
+			},
+			{
+				"command": "showDialog",
+				"title": "添加向上页面组件",
+				"category": "xs-"
+			},
+			{
+				"command": "addFolder",
+				"title": "创建文件夹",
+				"category": "xs-"
+			}
+		],
+		"menus": {
+			"view/title": [
+				{
+					"command": "jenkins.refreshEntry",
+					"when": "view == nodeDependencies",
+					"group": "navigation"
+				}
+			],
+			"view/item/context": [
+				{
+					"command": "jenkins.jenkinsConstruct",
+					"when": "viewItem == jenkins || view == localList"
+				},
+				{
+					"command": "jenkins.openURL",
+					"when": "viewItem == jenkins || view == localList"
+				},
+				{
+					"command": "jenkins.jenkinsShowLog",
+					"when": "viewItem == jenkins || view == localList"
+				},
+				{
+					"command": "jenkins.getConfig",
+					"when": "viewItem == jenkins || view == localList"
+				},
+				{
+					"command": "jenkins.addStore",
+					"when": "view == nodeDependencies"
+				},
+				{
+					"command": "jenkins.removeAtStore",
+					"when": "view == localList"
+				}
+			],
+			"editor/context": [
+				{
+					"command": "xs-createApp",
+					"group": "navigation",
+					"when": "explorerResourceIsFolder"
+				},
+				{
+					"command": "pxToRpxEvent",
+					"group": "navigation",
+					"when": "explorerResourceIsFolder"
+				},
+				{
+					"command": "rpxToPxEvent",
+					"group": "navigation",
+					"when": "explorerResourceIsFolder"
+				}
+			],
+			"explorer/context": [
+				{
+					"command": "showDialog",
+					"group": "navigation",
+					"when": "explorerResourceIsFolder"
+				},
+				{
+					"command": "addFolder",
+					"group": "navigation",
+					"when": "explorerResourceIsFolder"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"lint": "eslint .",
+		"pretest": "npm run lint",
+		"test": "node ./test/runTest.js",
+		"dev": "node ./test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.61.0",
+		"@types/glob": "^7.1.4",
+		"@types/mocha": "^9.0.0",
+		"@types/node": "14.x",
+		"eslint": "^7.32.0",
+		"glob": "^7.1.7",
+		"mocha": "^9.1.1",
+		"typescript": "^4.4.3",
+		"@vscode/test-electron": "^1.6.2"
+	},
+	"dependencies": {
+		"babel-eslint": "^10.1.0",
+		"jenkins": "^0.28.1",
+		"xml2js": "^0.4.23",
+		"xmlreader": "^0.2.3"
+	},
+	"__metadata": {
+		"id": "6d500f5c-cda5-4f0b-9de1-744c6f659111",
+		"publisherId": "0fd1c470-6a7e-488a-80a6-2366a8094148",
+		"publisherDisplayName": "cjw",
+		"targetPlatform": "undefined",
+		"updated": false,
+		"isPreReleaseVersion": false,
+		"installedTimestamp": 1699323652831,
+		"preRelease": false
+	}
+}

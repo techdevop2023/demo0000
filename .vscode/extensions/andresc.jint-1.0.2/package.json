@@ -1,0 +1,81 @@
+{
+	"name": "jint",
+	"displayName": "jenkintegration",
+	"description": "Execute jenkins jobs from vsce",
+	"version": "1.0.2",
+	"publisher": "AndresC",
+	"engines": {
+		"vscode": "^1.23.1"
+	},
+	"categories": [
+		"Other"
+	],
+	"icon": "jenkins.jpeg",
+	"activationEvents": [
+		"onCommand:extension.configJenkinsCredentials",
+		"onCommand:extension.excecuteJenkinsJob",
+		"onCommand:extension.excecuteLastJenkinsJob",
+		"onCommand:extension.changeURL"
+	],
+	"main": "./out/extension",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.configJenkinsCredentials",
+				"title": "Configuration of jenkin's account"
+			},
+			{
+				"command": "extension.excecuteJenkinsJob",
+				"title": "Excecute jenkins job"
+			},
+			{
+				"command": "extension.excecuteLastJenkinsJob",
+				"title": "Excecute last jenkins job"
+			},
+			{
+				"command": "extension.changeURL",
+				"title": "Configure jenkins URL"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^2.6.1",
+		"vscode": "^1.1.21",
+		"tslint": "^5.8.0",
+		"@types/node": "^8.10.25",
+		"@types/mocha": "^2.2.42"
+	},
+	"dependencies": {
+		"@types/request-promise-native": "^1.0.15",
+		"request": "^2.88.0",
+		"request-promise-native": "^1.0.5",
+		"vsce": "^1.46.0",
+		"web-request": "^1.0.7"
+	},
+	"license": "SEE LICENSE IN LICENSE.txt",
+	"bugs": {
+		"email": "andres.ch@protonmail.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Taurus95/IJenkins.git"
+	},
+	"homepage": "https://github.com/Taurus95/IJenkins/README.md",
+	"__metadata": {
+		"id": "c24be38b-0bb8-419b-ae35-6b289f88cc37",
+		"publisherId": "223d1020-745f-40c3-94ca-c32d4bdbcbe4",
+		"publisherDisplayName": "Andres Ch",
+		"targetPlatform": "undefined",
+		"updated": false,
+		"isPreReleaseVersion": false,
+		"installedTimestamp": 1699323678896,
+		"preRelease": false
+	}
+}

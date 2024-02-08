@@ -1,0 +1,255 @@
+{
+	"publisher": "dave-hagedorn",
+	"name": "jenkins-runner",
+	"displayName": "Jenkins Runner",
+	"description": "Develop and run Jenkins pipeline scripts from within vs code",
+	"version": "1.3.0",
+	"homepage": "https://github.com/dave-hagedorn/jenkins-runner/blob/master/README.md",
+	"icon": "images/icon.png",
+	"galleryBanner": {
+		"color": "#C80000",
+		"theme": "dark"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/dave-hagedorn/jenkins-runner.git"
+	},
+	"bugs": {
+		"url": "https://github.com/dave-hagedorn/jenkins-runner/issues"
+	},
+	"license": "SEE LICENSE IN LICENSE.md",
+	"engines": {
+		"vscode": "^1.30.0"
+	},
+	"categories": [
+		"Other",
+		"Programming Languages"
+	],
+	"activationEvents": [
+		"onCommand:runPipelineScriptOnDefault",
+		"onCommand:runPipelineScriptOn",
+		"onCommand:showPipelineLog",
+		"onCommand:stopPipelineRun",
+		"onCommand:forgetCachedPasswords",
+		"workspaceContains:**/Jenkinsfile"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "stopPipelineRun",
+				"title": "Stop Pipeline Run",
+				"category": "Jenkins Runner"
+			},
+			{
+				"command": "showPipelineLog",
+				"title": "Show Pipeline Log",
+				"category": "Jenkins Runner"
+			},
+			{
+				"command": "runPipelineScriptOn",
+				"title": "Run Pipeline Script On...",
+				"category": "Jenkins Runner"
+			},
+			{
+				"command": "runPipelineScriptOnDefault",
+				"title": "Run Pipeline Script On Default Job",
+				"category": "Jenkins Runner"
+			},
+			{
+				"command": "forgetCachedPasswords",
+				"title": "Forget temporary passwords",
+				"category": "Jenkins Runner"
+			}
+		],
+		"configuration": {
+			"title": "Jenkins Runner",
+			"properties": {
+				"jenkins-runner.clearOutputOnRun": {
+					"type": "boolean",
+					"default": "false",
+					"description": "Clear Jenkins console output on each run"
+				},
+				"jenkins-runner.hostConfigs": {
+					"type": "object",
+					"description": "Jenkins hosts and their credentials",
+					"patternProperties": {
+						".+": {
+							"type": "object",
+							"required": [
+								"url"
+							],
+							"properties": {
+								"url": {
+									"description": "URL to Jenkins host.  Required",
+									"type": "string",
+									"format": "uri"
+								},
+								"user": {
+									"description": "Username used to authenticate against this host.  Optional if not auth. needed",
+									"type": "string"
+								},
+								"password": {
+									"description": "Password used to authenticate against this host.  Optional.  If \"user\" is provided and this is blank, you will be prompted for the user's password",
+									"type": "string"
+								},
+								"useCrumbIssuer": {
+									"description": "Defaults to true.  Use the crumbIssuer when authenticating.  ie, your Jenkins uses CSRF protection - https://wiki.jenkins.io/display/JENKINS/Remote+access+API",
+									"type": "boolean",
+									"default": true
+								},
+								"rejectUnauthorizedCert": {
+									"description": "Defaults to true.  Use for testing only - to avoid MITM attacks.  Set to false to ignore unauthorized or self-signed SSL certs when connecting (https://nodejs.org/dist/latest/docs/api/tls.html#tls_tls_connect_options_callback)",
+									"type": "boolean",
+									"default": false
+								}
+							}
+						}
+					},
+					"default": {
+						"host-with-password": {
+							"url": "http://localhost:8090",
+							"user": "admin",
+							"password": "admin",
+							"useCrumbIssuer": false,
+							"rejectUnauthorizedCert": false
+						},
+						"host-prompt-for-password": {
+							"url": "http://server:8090",
+							"user": "admin"
+						},
+						"host-no-password": {
+							"url": "http://server-no-auth:8090"
+						}
+					}
+				},
+				"jenkins-runner.jobs": {
+					"type": "object",
+					"description": "Jenkins jobs and configurations, used to run a script",
+					"patternProperties": {
+						".+": {
+							"type": "object",
+							"required": [
+								"runWith",
+								"name"
+							],
+							"properties": {
+								"isDefault": {
+									"type": "boolean",
+									"description": "If set, this job config will be chosen by the \"Run Pipeline Script On Default Job\" command.  Only one job config should set this"
+								},
+								"name": {
+									"description": "Name of the Jenkins job to use when running a script - ITS CONFIGURATION WILL BE REPLACED",
+									"type": "string"
+								},
+								"runWith": {
+									"description": "Host, or list of hosts this Jenkins job config can be run on.  Helpful if you have dev and prod. instances",
+									"oneOf": [
+										{
+											"type": "string"
+										},
+										{
+											"type": "array",
+											"items": {
+												"type": "string"
+											}
+										}
+									]
+								},
+								"parameters": {
+									"description": "Map of parameters and their values to use when running this job.  Use for parameterized jobs",
+									"type": "object",
+									"patternProperties": {
+										".+": {
+											"anyOf": [
+												{
+													"type": "string"
+												},
+												{
+													"type": "boolean"
+												},
+												{
+													"type": "number"
+												},
+												{
+													"type": "integer"
+												}
+											]
+										}
+									}
+								},
+								"environment": {
+									"description": "Map of environment variables and their values to use when running this job.  Requires envinject plugin to be installed on Jenkins",
+									"type": "object",
+									"patternProperties": {
+										".+": {
+											"anyOf": [
+												{
+													"type": "string"
+												},
+												{
+													"type": "boolean"
+												},
+												{
+													"type": "number"
+												},
+												{
+													"type": "integer"
+												}
+											]
+										}
+									}
+								}
+							}
+						}
+					},
+					"default": {
+						"test-1": {
+							"isDefault": true,
+							"runWith": "host-no-password",
+							"name": "pipeline-test",
+							"parameters": {
+								"first": 1,
+								"second": "2nd"
+							},
+							"environment": {
+								"HOST_NAME": "localhost"
+							}
+						},
+						"test-2": {
+							"runWith": [
+								"host-with-password",
+								"host-prompt-for-password"
+							],
+							"name": "pipeline-test"
+						}
+					}
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"dependencies": {
+		"ajv": "6.9.1",
+		"jenkins": "0.28.0",
+		"object-assign-deep": "0.4.0",
+		"xml2js": "0.4.19"
+	},
+	"devDependencies": {
+		"@types/mocha": "5.2.6",
+		"@types/node": "13.9.3",
+		"@types/xml2js": "0.4.3",
+		"mocha": "6.1.4",
+		"ts-node": "7.0.1",
+		"prettier": "2.0.2",
+		"tslint": "5.8.0",
+		"typescript": "3.8.3",
+		"vscode": "1.1.25"
+	}
+}

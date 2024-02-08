@@ -1,0 +1,97 @@
+{
+	"name": "jenkins-declarative-linter",
+	"displayName": "Jenkins Declarative Pipeline Linter",
+	"description": "A plugin to lint Jenkins declarative pipelines via the Jenkins CLI.",
+	"version": "0.2.2",
+	"repository": "https://github.com/ekeel/jenkins-declarative-linter",
+	"publisher": "EKeelGitHubActionsPublisher",
+	"icon": "images/jenkins.png",
+	"engines": {
+		"vscode": "^1.63.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:jenkins-declarative-linter.lint",
+		"onCommand:jenkins-declarative-linter.hello"
+	],
+	"main": "./dist/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "jenkins-declarative-linter.hello",
+				"title": "Hello"
+			},
+			{
+				"command": "jenkins-declarative-linter.lint",
+				"title": "Lint Jenkinsfile"
+			}
+		],
+		"configuration": [
+			{
+				"title": "Jenkins Declarative Pipeline Linter",
+				"properties": {
+					"jenkins-declarative-linter.url": {
+						"type": "string",
+						"description": "The URL to the Jenkins instance."
+					},
+					"jenkins-declarative-linter.port": {
+						"type": "string",
+						"description": "The SSH port configured for the Jenkins instance."
+					},
+					"jenkins-declarative-linter.user": {
+						"type": "string",
+						"description": "The username for connecting to the Jenkins instance."
+					},
+					"jenkins-declarative-linter.key": {
+						"type": "string",
+						"description": "The path to the SSH key for connecting to the Jenkins instance."
+					}
+				}
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run package",
+		"compile": "webpack",
+		"watch": "webpack --watch",
+		"package": "webpack --mode production --devtool hidden-source-map",
+		"compile-tests": "tsc -p . --outDir out",
+		"watch-tests": "tsc -p . -w --outDir out",
+		"pretest": "npm run compile-tests && npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.2.0",
+		"@types/mocha": "^9.0.0",
+		"@types/node": "14.x",
+		"@types/vscode": "^1.63.0",
+		"@typescript-eslint/eslint-plugin": "^5.9.1",
+		"@typescript-eslint/parser": "^5.9.1",
+		"@vscode/test-electron": "^2.0.3",
+		"eslint": "^8.6.0",
+		"glob": "^7.2.0",
+		"mocha": "^9.1.3",
+		"ts-loader": "^9.2.6",
+		"typescript": "^4.5.4",
+		"webpack": "^5.66.0",
+		"webpack-cli": "^4.9.1"
+	},
+	"dependencies": {
+		"ssh2": "^1.6.0",
+		"temp": "^0.9.4",
+		"uuid": "^8.3.2"
+	},
+	"__metadata": {
+		"id": "033a7869-f4ad-4f79-b13e-4f3536f1017b",
+		"publisherId": "a1c09bed-ecb8-43da-b2af-ff3cead0c197",
+		"publisherDisplayName": "ekeel",
+		"targetPlatform": "undefined",
+		"updated": false,
+		"isPreReleaseVersion": false,
+		"installedTimestamp": 1699323612693,
+		"preRelease": false
+	}
+}

@@ -1,0 +1,79 @@
+2023/10/28 03:37:06 AzcopyVersion  10.21.1
+2023/10/28 03:37:06 OS-Environment  windows
+2023/10/28 03:37:06 OS-Architecture  amd64
+2023/10/28 03:37:06 Log times are in UTC. Local time is 28 Oct 2023 09:07:06
+2023/10/28 03:37:06 ISO 8601 START TIME: to copy files that changed before or after this job started, use the parameter --include-before=2023-10-28T03:37:01Z or --include-after=2023-10-28T03:37:01Z
+2023/10/28 03:37:06 Any empty folders will not be processed, because source and/or destination doesn't have full folder support
+2023/10/28 03:37:06 Job-Command copy C:\Data https://techlearningsa01.blob.core.windows.net/demo/?se=2023-10-28t11%3A30%3A15z&sig=-REDACTED-&sp=rwdlacupiytfx&spr=https&srt=sco&ss=bfqt&st2023-10-28t03%3A30%3A15z=&sv=2022-11-02 --recursive=true 
+2023/10/28 03:37:06 Number of CPUs: 8
+2023/10/28 03:37:06 Max file buffer RAM 4.000 GB
+2023/10/28 03:37:06 Max concurrent network operations: 128 (Based on number of CPUs. Set AZCOPY_CONCURRENCY_VALUE environment variable to override)
+2023/10/28 03:37:06 Check CPU usage when dynamically tuning concurrency: true (Based on hard-coded default. Set AZCOPY_TUNE_TO_CPU environment variable to true or false override)
+2023/10/28 03:37:06 Max concurrent transfer initiation routines: 64 (Based on hard-coded default. Set AZCOPY_CONCURRENT_FILES environment variable to override)
+2023/10/28 03:37:06 Max enumeration routines: 16 (Based on hard-coded default. Set AZCOPY_CONCURRENT_SCAN environment variable to override)
+2023/10/28 03:37:06 Parallelize getting file properties (file.Stat): false (Based on AZCOPY_PARALLEL_STAT_FILES environment variable)
+2023/10/28 03:37:06 Max open files when downloading: 2147483119 (auto-computed)
+2023/10/28 03:37:06 Final job part has been created
+2023/10/28 03:37:06 JobID=67746d86-c8bf-0942-6e7c-7b0ce91a3774, credential type: Anonymous
+2023/10/28 03:37:06 Final job part has been scheduled
+2023/10/28 03:37:06 INFO: [P#0-T#0] Starting transfer: Source "\\\\?\\C:\\Data\\AzureLoadBalancer.pdf" Destination "https://techlearningsa01.blob.core.windows.net/demo/Data/AzureLoadBalancer.pdf?se=2023-10-28T11%3A30%3A15Z&sig=-REDACTED-&sp=rwdlacupiytfx&spr=https&srt=sco&ss=bfqt&st2023-10-28T03%3A30%3A15Z=&sv=2022-11-02". Specified chunk size 8388608
+2023/10/28 03:37:07 ==> REQUEST/RESPONSE (Try=1/365.3362ms, OpTime=365.3362ms) -- RESPONSE STATUS CODE ERROR
+   PUT https://techlearningsa01.blob.core.windows.net/demo/Data/AzureLoadBalancer.pdf?se=2023-10-28T11%3A30%3A15Z&sig=-REDACTED-&sp=rwdlacupiytfx&spr=https&srt=sco&ss=bfqt&st2023-10-28T03%3A30%3A15Z=&sv=2022-11-02
+   Accept: application/xml
+   Content-Length: 583600
+   Content-Type: application/octet-stream
+   User-Agent: AzCopy/10.21.1 azsdk-go-azblob/v1.1.0 (go1.19.12; Windows_NT)
+   X-Ms-Client-Request-Id: e5dfaeff-bf7e-4d57-61cc-ceed81b166bb
+   x-ms-access-tier: 
+   x-ms-blob-cache-control: 
+   x-ms-blob-content-disposition: 
+   x-ms-blob-content-encoding: 
+   x-ms-blob-content-language: 
+   x-ms-blob-content-md5: 
+   x-ms-blob-content-type: 
+   x-ms-blob-type: 
+   x-ms-version: 
+   --------------------------------------------------------------------------------
+   RESPONSE Status: 403 Server failed to authenticate the request. Make sure the value of Authorization header is formed correctly including the signature.
+   Content-Length: 505
+   Content-Type: application/xml
+   Date: Sat, 28 Oct 2023 03:37:01 GMT
+   Server: Microsoft-HTTPAPI/2.0
+   X-Ms-Error-Code: AuthenticationFailed
+   X-Ms-Request-Id: edf565ce-801e-000f-1850-0988b1000000
+Response Details: ﻿<Code>AuthenticationFailed</Code><Message>Server failed to authenticate the request. Make sure the value of Authorization header is formed correctly including the signature. </Message><AuthenticationErrorDetail>Signature did not match. String to sign used was techlearningsa01 rwdlacupiytfx bfqt sco  2023-10-28T11:30:15Z  https 2022-11-02  </AuthenticationErrorDetail>
+
+2023/10/28 03:37:07 INFO: [P#0-T#0] Early close of chunk in singleChunkReader with context still active
+2023/10/28 03:37:07 ERR: [P#0-T#0] UPLOADFAILED: \\?\C:\Data\AzureLoadBalancer.pdf : 403 : 403 Server failed to authenticate the request. Make sure the value of Authorization header is formed correctly including the signature.. When Uploading blob. X-Ms-Request-Id: edf565ce-801e-000f-1850-0988b1000000
+
+   Dst: https://techlearningsa01.blob.core.windows.net/demo/Data/AzureLoadBalancer.pdf?se=2023-10-28T11%3A30%3A15Z&sig=-REDACTED-&sp=rwdlacupiytfx&spr=https&srt=sco&ss=bfqt&st2023-10-28T03%3A30%3A15Z=&sv=2022-11-02
+2023/10/28 03:37:07 JobID=67746d86-c8bf-0942-6e7c-7b0ce91a3774 canceled
+2023/10/28 03:37:07 all parts of entire Job 67746d86-c8bf-0942-6e7c-7b0ce91a3774 successfully completed, cancelled or paused
+2023/10/28 03:37:07 all parts of entire Job 67746d86-c8bf-0942-6e7c-7b0ce91a3774 successfully cancelled
+2023/10/28 03:37:07 is part of Job which 1 total number of parts done 
+2023/10/28 03:37:08 PERF: primary performance constraint is Unknown. States: X:  0, O:  0, M:  0, L:  0, R:  0, D:  0, W:  0, F:  0, B:  0, E:  1, T:  1, GRs: 128
+2023/10/28 03:37:08 0.0 %, 0 Done, 0 Failed, 1 Pending, 0 Skipped, 1 Total, 2-sec Throughput (Mb/s): 0.7842
+2023/10/28 03:37:08 
+
+Diagnostic stats:
+IOPS: 0
+End-to-end ms per request: 365
+Network Errors: 0.00%
+Server Busy: 0.00%
+
+
+Job 67746d86-c8bf-0942-6e7c-7b0ce91a3774 summary
+Elapsed Time (Minutes): 0.0334
+Number of File Transfers: 1
+Number of Folder Property Transfers: 0
+Number of Symlink Transfers: 0
+Total Number of Transfers: 1
+Number of File Transfers Completed: 0
+Number of Folder Transfers Completed: 0
+Number of File Transfers Failed: 0
+Number of Folder Transfers Failed: 0
+Number of File Transfers Skipped: 0
+Number of Folder Transfers Skipped: 0
+TotalBytesTransferred: 0
+Final Job Status: Cancelled
+

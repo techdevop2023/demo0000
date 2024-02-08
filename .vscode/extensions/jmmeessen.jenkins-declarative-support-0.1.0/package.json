@@ -1,0 +1,59 @@
+{
+	"name": "jenkins-declarative-support",
+	"displayName": "Declarative Jenkinsfile Support",
+	"description": "Adds syntax highlighting support for the declarative Jenkinsfile format flavour.",
+	"version": "0.1.0",
+	"license": "MIT",
+	"publisher": "jmMeessen",
+	"engines": {
+		"vscode": "^1.10.0"
+	},
+	"categories": [
+		"Languages"
+	],
+	"homepage": "https://github.com/jmMeessen/vsc-jenkins-declarative",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jmMeessen/vsc-jenkins-declarative.git"
+	},
+	"keywords": [
+		"Jenkinsfile",
+		"jenkinsfile",
+		"Jenkins"
+	],
+	"icon": "jenkins.png",
+	"contributes": {
+		"languages": [
+			{
+				"id": "declarative",
+				"aliases": [
+					"JenkinsDeclarativePipeline",
+					"declarative"
+				],
+				"extensions": [
+					"Jenkinsfile",
+					"jenkinsfile",
+					".jdp"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "declarative",
+				"scopeName": "source.jenkinsDeclarative",
+				"path": "./syntaxes/declarative.tmLanguage.json"
+			}
+		]
+	},
+	"__metadata": {
+		"id": "3e0f98a2-dd7e-48c5-a302-f6952926cdcb",
+		"publisherId": "55653ecc-0714-470b-9753-43d808b4d83c",
+		"publisherDisplayName": "JM Meessen",
+		"targetPlatform": "undefined",
+		"updated": false,
+		"isPreReleaseVersion": false,
+		"installedTimestamp": 1699323622172,
+		"preRelease": false
+	}
+}

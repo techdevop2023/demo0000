@@ -1,0 +1,1 @@
+The [jenkins.png](https://jenkins.io/) included is licensed under the [Creative Commons Attribution-ShareAlike 3.0 Unported License](https://creativecommons.org/licenses/by-sa/3.0/) by [https://jenkins.io/](https://jenkins.io/).

@@ -1,0 +1,92 @@
+{
+	"name": "jenkins-status-fork",
+	"displayName": "Jenkins Status (fork)",
+	"description": "View your project's Jenkins status inside Visual Studio Code (forked from jenkins-status extension to allow multiple job configuration). This extension will be removed once changes have been merged in original one",
+	"version": "3.1.4",
+	"publisher": "eramitmittal",
+	"galleryBanner": {
+		"color": "#168bb9",
+		"theme": "dark"
+	},
+	"engines": {
+		"vscode": "^1.32.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"keywords": [
+		"jenkins",
+		"status",
+		"multi-root ready"
+	],
+	"activationEvents": [
+		"workspaceContains:.jenkins",
+		"workspaceContains:.jenkinsrc.js",
+		"onCommand:jenkins.updateStatus",
+		"onCommand:jenkins.openInJenkins",
+		"onCommand:jenkins.openInJenkinsConsoleOutput"
+	],
+	"main": "./out/src/extension",
+	"icon": "images/icon.png",
+	"license": "SEE LICENSE IN LICENSE.md",
+	"homepage": "https://github.com/eramitmittal/vscode-jenkins-status/blob/master/README.md",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/eramitmittal/vscode-jenkins-status/blob/master/README.md"
+	},
+	"bugs": {
+		"url": "https://github.com/eramitmittal/vscode-jenkins-status/blob/master/README.md"
+	},
+	"contributes": {
+		"commands": [
+			{
+				"command": "jenkins.updateStatus",
+				"title": "Jenkins: Update Status"
+			},
+			{
+				"command": "jenkins.openInJenkins",
+				"title": "Jenkins: Open in Jenkins"
+			},
+			{
+				"command": "jenkins.openInJenkinsConsoleOutput",
+				"title": "Jenkins: Open in Jenkins (Console Output)"
+			}
+		],
+		"configuration": {
+			"type": "object",
+			"title": "Jenkins Status Configuration",
+			"properties": {
+				"jenkins.polling": {
+					"type": "integer",
+					"default": 0,
+					"description": "Defines a polling (in minutes) for automatic status update. 0 (zero) means 'no update'"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"build": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"vscode:prepublish": "npm run build",
+		"postinstall": "node ./node_modules/vscode/bin/install"
+	},
+	"dependencies": {
+		"request": "^2.88.0"
+	},
+	"devDependencies": {
+		"@types/node": "^6.0.40",
+		"typescript": "^3.1.6",
+		"vscode": "^1.1.28",
+		"tslint": "^5.20.1"
+	},
+	"__metadata": {
+		"id": "535634dc-912e-4610-bc9e-62f6b9b85949",
+		"publisherId": "37a790be-a24c-49d7-a31f-62e9ea789229",
+		"publisherDisplayName": "Amit Mittal",
+		"targetPlatform": "undefined",
+		"updated": false,
+		"isPreReleaseVersion": false,
+		"installedTimestamp": 1699323778166,
+		"preRelease": false
+	}
+}

@@ -1,0 +1,21 @@
+2023/10/28 03:39:48 AzcopyVersion  10.21.1
+2023/10/28 03:39:48 OS-Environment  windows
+2023/10/28 03:39:48 OS-Architecture  amd64
+2023/10/28 03:39:48 Log times are in UTC. Local time is 28 Oct 2023 09:09:48
+2023/10/28 03:39:48 ==> REQUEST/RESPONSE (Try=1/44.1901ms, OpTime=242.6985ms) -- RESPONSE STATUS CODE ERROR
+   GET https://techlearningsa01.blob.core.windows.net/demo?comp=list&delimiter=%2F&include=metadata&prefix=&restype=container&se=2023-10-28T11%3A30%3A15Z&sig=-REDACTED-&sp=rwdlacupiytfx&spr=https&srt=sco&ss=bfqt&st2023-10-28T03%3A30%3A15Z=&sv=2022-11-02
+   Accept: application/xml
+   User-Agent: AzCopy/10.21.1 azsdk-go-azblob/v1.1.0 (go1.19.12; Windows_NT)
+   X-Ms-Client-Request-Id: df70ff6b-d7ee-4f04-556a-120b9baa7e54
+   x-ms-version: 
+   --------------------------------------------------------------------------------
+   RESPONSE Status: 403 Server failed to authenticate the request. Make sure the value of Authorization header is formed correctly including the signature.
+   Content-Length: 505
+   Content-Type: application/xml
+   Date: Sat, 28 Oct 2023 03:39:42 GMT
+   Server: Microsoft-HTTPAPI/2.0
+   X-Ms-Error-Code: AuthenticationFailed
+   X-Ms-Request-Id: 586821a9-401e-0010-5350-093bb5000000
+Response Details: ﻿<Code>AuthenticationFailed</Code><Message>Server failed to authenticate the request. Make sure the value of Authorization header is formed correctly including the signature. </Message><AuthenticationErrorDetail>Signature did not match. String to sign used was techlearningsa01 rwdlacupiytfx bfqt sco  2023-10-28T11:30:15Z  https 2022-11-02  </AuthenticationErrorDetail>
+
+2023/10/28 03:39:48 Closing Log

@@ -1,0 +1,68 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "JenkinsDeclarativePipeline",
+	"patterns": [
+		{ "include": "#keywords" },
+		{ "include": "#doubleQuoteStrings" },
+		{ "include": "#singleQuoteStrings" },
+		{ "include": "#sections" },
+		{ "include": "#directives" },
+		{ "include": "#constants" },
+		{ "include": "#comments" }
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.declarative",
+				"match": "\\b(when|steps)\\b"
+			}]
+		},
+		"singleQuoteStrings": {
+			"name": "string.quoted.single.declarative",
+			"begin":"'",
+			"end": "'",
+			"patterns": [
+				{
+					"name": "constant.character.escape.declarative",
+					"match": "\\\\."
+				}
+			]
+		},
+		"doubleQuoteStrings": {
+            "name": "string.quoted.double.declarative",
+            "begin": "\"",
+            "end": "\"",
+            "patterns": [
+                {
+                    "name": "constant.character.escape.fusion",
+                    "match": "\\\\."
+                }
+            ]
+        },
+		"sections": {
+			"patterns": [{
+				"name": "support.class.declarative",
+				"match": "\\b(post|stages|step)\\b"
+			}]
+		},
+		"directives": {
+			"patterns": [{
+				"name": "support.function.declarative",
+				"match": "\\b(agent|environment|options|parameters|triggers|stage|tools)\\b"
+			}]
+		},
+		"constants": {
+			"patterns": [{
+				"name": "variable.language.declarative",
+				"match": "\\b(pipeline)\\b"
+			}]
+		},
+		"comments": {
+			"patterns":[{
+				"name": "comment.line.double-slash.declarative",
+				"match": "(//).*$\n?"	
+			}]
+		}
+	},
+	"scopeName": "source.jenkinsDeclarative"
+}

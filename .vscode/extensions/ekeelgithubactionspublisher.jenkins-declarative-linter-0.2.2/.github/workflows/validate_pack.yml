@@ -1,0 +1,30 @@
+name: Validate Packaging
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  pr:
+    name: Package and Release
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[no ci]')"
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        id: install_typescript
+        run: |
+          npm install -g typescript
+          npm install -D ts-loader
+          npm install -g vsce
+
+      - name: Package
+        id: package
+        shell: bash
+        run: |
+          vsce package

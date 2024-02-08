@@ -1,0 +1,98 @@
+{
+	"name": "jenkins-pipeline-linter-connector",
+	"displayName": "Jenkins Pipeline Linter Connector",
+	"description": "Validates Jenkinsfiles by sending them to the Pipeline Linter of a Jenkins server.",
+	"version": "1.2.0",
+	"icon": "images/icon.png",
+	"publisher": "janjoerke",
+	"license": "LICENSE.txt",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/janjoerke/vscode-jenkins-pipeline-linter-connector.git"
+	},
+	"engines": {
+		"vscode": "^1.25.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:jenkins.pipeline.linter.connector.validate"
+	],
+	"main": "./out/extension",
+	"contributes": {
+		"commands": [
+			{
+				"command": "jenkins.pipeline.linter.connector.validate",
+				"title": "Validate Jenkinsfile"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "jenkins.pipeline.linter.connector.validate",
+				"key": "alt+shift+v",
+				"when": "editorFocus"
+			}
+		],
+		"configuration": {
+			"type": "object",
+			"title": "Jenkins Pipeline Linter Connector",
+			"properties": {
+				"jenkins.pipeline.linter.connector.url": {
+					"type": "string",
+					"description": "Linter url (i.e. http://<your_jenkins_server:port>/pipeline-model-converter/validate)"
+				},
+				"jenkins.pipeline.linter.connector.user": {
+					"type": "string",
+					"description": "Username"
+				},
+				"jenkins.pipeline.linter.connector.pass": {
+					"type": "string",
+					"description": "Password (can be left blank if you don't want to put your password in your settings)"
+				},
+				"jenkins.pipeline.linter.connector.token": {
+					"type": "string",
+					"description": "Token (can be left blank if you don't want to put your token in your settings)"
+				},
+				"jenkins.pipeline.linter.connector.crumbUrl": {
+					"type": "string",
+					"description": "The url of the crumb service (i.e. http://<your_jenkins_server:port>/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,%22:%22,//crumb))"
+				},
+				"jenkins.pipeline.linter.connector.strictssl": {
+					"type": "boolean",
+					"default": true,
+					"description": "Set to false to allow invalid ssl connections"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"@types/mocha": "^2.2.42",
+		"@types/node": "^7.0.43",
+		"node.extend": ">=1.1.7",
+		"tslint": "^5.8.0",
+		"typescript": "^2.6.1",
+		"vscode": "^1.1.36"
+	},
+	"dependencies": {
+		"request": "^2.88.0",
+		"url-parse": "^1.4.3"
+	},
+	"__metadata": {
+		"id": "ee551ede-893b-40fa-b96c-99fed0e7dff2",
+		"publisherId": "c35de791-0aa0-4ec8-97a9-ade2636e4c36",
+		"publisherDisplayName": "Jan Jörke",
+		"targetPlatform": "undefined",
+		"updated": false,
+		"isPreReleaseVersion": false,
+		"installedTimestamp": 1699323600918,
+		"preRelease": false
+	}
+}
